@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lvyn — Developer</title>
+    <meta name="description" content="Portofolio personal lvyn — Membangun hal-hal berguna di web dengan Next.js, TypeScript, dan Tailwind CSS.">
+    <meta name="keywords" content="lvyn, portfolio, web developer, frontend, react, nextjs, indonesia">
+    <link rel="canonical" href="https://lvyn.my.id">
+    
+    <!-- Open Graph / Social Meta Tags -->
+    <meta property="og:title" content="lvyn — Developer">
+    <meta property="og:description" content="Membangun hal-hal berguna di web. Frontend & Full-stack enthusiast.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lvyn.my.id">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        accent: {
+                            50: '#f0fdf4',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+    </style>
+</head>
+<body class="bg-[#fafafa] dark:bg-[#0a0a0a] text-neutral-900 dark:text-neutral-100 antialiased selection:bg-accent-500 selection:text-white transition-colors duration-300">
+
+    <!-- Sticky Navbar -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/70 dark:bg-[#0a0a0a]/70 border-b border-neutral-200 dark:border-neutral-800 transition-colors">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="font-mono font-semibold text-base tracking-tight flex items-center gap-2 group">
+                <span class="w-2 h-2 rounded-full bg-accent-500 animate-pulse"></span>
+                <span>lvyn<span class="text-neutral-400 dark:text-neutral-600">/</span>developer</span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                <a href="#work" class="hover:text-neutral-900 dark:hover:text-white transition-colors">Work</a>
+                <a href="#about" class="hover:text-neutral-900 dark:hover:text-white transition-colors">About</a>
+                <a href="#stack" class="hover:text-neutral-900 dark:hover:text-white transition-colors">Stack</a>
+                <a href="#contact" class="hover:text-neutral-900 dark:hover:text-white transition-colors">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" aria-label="Toggle Theme" class="p-2 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-700 dark:text-neutral-300 transition-colors">
+                    <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" aria-label="Menu" class="md:hidden p-2 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-700 dark:text-neutral-300">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#0a0a0a] px-6 py-4 space-y-3">
+            <a href="#work" class="block text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white py-1">Work</a>
+            <a href="#about" class="block text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white py-1">About</a>
+            <a href="#stack" class="block text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white py-1">Stack</a>
+            <a href="#contact" class="block text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white py-1">Contact</a>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 space-y-28 py-16">
+
+        <!-- Hero Section -->
+        <section id="hero" class="space-y-8 pt-6">
+            <div class="space-y-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-accent-50 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400 border border-accent-500/20">
+                    <span class="w-1.5 h-1.5 rounded-full bg-accent-500 animate-ping"></span>
+                    <span>Terbuka untuk proyek baru</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-neutral-900 dark:text-white">
+                    lvyn
+                </h1>
+                <p class="text-xl sm:text-2xl font-medium text-neutral-600 dark:text-neutral-300">
+                    Membangun hal-hal berguna di web.
+                </p>
+                <p class="text-neutral-600 dark:text-neutral-400 max-w-xl text-base sm:text-lg leading-relaxed">
+                    Software developer yang berfokus pada antarmuka modern, performa tinggi, dan pengalaman pengguna yang mulus menggunakan web stack mutakhir.
+                </p>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap items-center gap-4">
+                <a href="#work" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 font-medium text-sm hover:opacity-95 transition shadow-sm">
+                    <span>Lihat Karya</span>
+                    <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                </a>
+                <a href="#contact" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-neutral-300 dark:border-neutral-700 hover:border-neutral-400 dark:hover:border-neutral-600 text-neutral-800 dark:text-neutral-200 font-medium text-sm transition">
+                    <span>Hubungi Saya</span>
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                </a>
+            </div>
+
+            <!-- Mini Info Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-neutral-200 dark:border-neutral-800 text-xs font-mono text-neutral-500 dark:text-neutral-400">
+                <div>
+                    <span class="block text-neutral-400 dark:text-neutral-600 uppercase tracking-wider mb-1">Lokasi</span>
+                    <span class="text-neutral-800 dark:text-neutral-200 font-medium">Indonesia (WIB)</span>
+                </div>
+                <div>
+                    <span class="block text-neutral-400 dark:text-neutral-600 uppercase tracking-wider mb-1">Status</span>
+                    <span class="text-accent-600 dark:text-accent-400 font-medium flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-accent-500"></span>
+                        Available
+                    </span>
+                </div>
+                <div>
+                    <span class="block text-neutral-400 dark:text-neutral-600 uppercase tracking-wider mb-1">Stack Utama</span>
+                    <span class="text-neutral-800 dark:text-neutral-200 font-medium">Next.js / TS</span>
+                </div>
+                <div>
+                    <span class="block text-neutral-400 dark:text-neutral-600 uppercase tracking-wider mb-1">Handle</span>
+                    <span class="text-neutral-800 dark:text-neutral-200 font-medium">@lvyn</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Selected Work Section -->
+        <section id="work" class="space-y-8">
+            <div class="flex items-end justify-between">
+                <div>
+                    <span class="font-mono text-xs uppercase tracking-widest text-accent-600 dark:text-accent-400 font-semibold">Portofolio</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white mt-1">Selected Work</h2>
+                </div>
+                <span class="font-mono text-xs text-neutral-400">01 — 03</span>
+            </div>
+
+            <div class="grid gap-6">
+                <!-- Project 1 -->
+                <article class="group relative rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 sm:p-8 bg-white dark:bg-neutral-900/40 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-300">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+                        <div class="flex items-center gap-3">
+                            <span class="font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">01</span>
+                            <span class="text-xs font-mono uppercase tracking-wider text-accent-600 dark:text-accent-400">SaaS Dashboard</span>
+                        </div>
+                        <span class="text-xs font-mono text-neutral-400">2026</span>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-neutral-900 dark:text-white mb-2 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">
+                        Nexus Metrics — Analytics Platform
+                    </h3>
+                    
+                    <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-6">
+                        Platform analitik web real-time berkecepatan tinggi dengan visualisasi grafik interaktif, kustomisasi widget modular, dan autentikasi aman.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-neutral-100 dark:border-neutral-800/80">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">Next.js</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">TypeScript</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">Tailwind CSS</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">Recharts</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <a href="https://github.com/lvyn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition">
+                                <i data-lucide="github" class="w-4 h-4"></i>
+                                <span>Source</span>
+                            </a>
+                            <a href="https://lvyn.my.id" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-accent-600 dark:text-accent-400 hover:underline">
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="group relative rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 sm:p-8 bg-white dark:bg-neutral-900/40 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-300">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+                        <div class="flex items-center gap-3">
+                            <span class="font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">02</span>
+                            <span class="text-xs font-mono uppercase tracking-wider text-accent-600 dark:text-accent-400">E-Commerce API & Store</span>
+                        </div>
+                        <span class="text-xs font-mono text-neutral-400">2025</span>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-neutral-900 dark:text-white mb-2 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">
+                        Velora Storefront
+                    </h3>
+                    
+                    <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-6">
+                        Toko online minimalis dengan sistem keranjang belanja stateful, integrasi payment gateway lokal, dan optimasi SEO tingkat lanjut.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-neutral-100 dark:border-neutral-800/80">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">React</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">Node.js</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">PostgreSQL</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <a href="https://github.com/lvyn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition">
+                                <i data-lucide="github" class="w-4 h-4"></i>
+                                <span>Source</span>
+                            </a>
+                            <a href="https://lvyn.my.id" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-accent-600 dark:text-accent-400 hover:underline">
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="group relative rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 sm:p-8 bg-white dark:bg-neutral-900/40 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-300">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+                        <div class="flex items-center gap-3">
+                            <span class="font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">03</span>
+                            <span class="text-xs font-mono uppercase tracking-wider text-accent-600 dark:text-accent-400">Developer Tool</span>
+                        </div>
+                        <span class="text-xs font-mono text-neutral-400">2025</span>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-neutral-900 dark:text-white mb-2 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">
+                        KnitSnippet Code Manager
+                    </h3>
+                    
+                    <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-6">
+                        Aplikasi manajemen cuplikan kode (code snippet) berbasis web dengan dukungan sintaks highlighting instan dan sinkronisasi cloud.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-neutral-100 dark:border-neutral-800/80">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">TypeScript</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">Tailwind CSS</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">Vite</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <a href="https://github.com/lvyn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition">
+                                <i data-lucide="github" class="w-4 h-4"></i>
+                                <span>Source</span>
+                            </a>
+                            <a href="https://lvyn.my.id" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-accent-600 dark:text-accent-400 hover:underline">
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="space-y-8">
+            <div>
+                <span class="font-mono text-xs uppercase tracking-widest text-accent-600 dark:text-accent-400 font-semibold">Biografi</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white mt-1">About</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                <div class="md:col-span-2 space-y-4 text-neutral-600 dark:text-neutral-400 text-sm sm:text-base leading-relaxed">
+                    <p>
+                        Halo! Saya <strong class="text-neutral-900 dark:text-white font-medium">lvyn</strong>, seorang pengembang perangkat lunak yang berfokus pada pembuatan aplikasi web yang bersih, efisien, dan fungsional. Perjalanan saya di dunia kode didorong oleh ketertarikan mendalam pada desain antarmuka yang intuitif dan performa sistem yang optimal.
+                    </p>
+                    <p>
+                        Selain ngoding, saya senang mengeksplorasi teknologi open-source terbaru, merancang arsitektur sistem modular, serta memastikan setiap baris kode yang ditulis memberikan nilai nyata bagi pengguna.
+                    </p>
+
+                    <!-- Favorite Quote Box -->
+                    <blockquote class="p-4 rounded-xl bg-neutral-100 dark:bg-neutral-900/60 border-l-2 border-accent-500 text-neutral-700 dark:text-neutral-300 italic text-sm my-6">
+                        "Simplicity is the soul of efficiency."
+                    </blockquote>
+                </div>
+
+                <!-- Details & Principles Column -->
+                <div class="p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/40 space-y-6">
+                    <div>
+                        <h4 class="font-mono text-xs uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-3">Details</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex justify-between"><span class="text-neutral-500">Role:</span> <span class="font-medium text-neutral-800 dark:text-neutral-200">Full-stack Dev</span></li>
+                            <li class="flex justify-between"><span class="text-neutral-500">Handle:</span> <span class="font-mono font-medium text-neutral-800 dark:text-neutral-200">@lvyn</span></li>
+                            <li class="flex justify-between"><span class="text-neutral-500">Location:</span> <span class="font-medium text-neutral-800 dark:text-neutral-200">Indonesia</span></li>
+                            <li class="flex justify-between"><span class="text-neutral-500">Status:</span> <span class="text-accent-600 dark:text-accent-400 font-medium">Open to work</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="border-t border-neutral-200 dark:border-neutral-800 pt-4">
+                        <h4 class="font-mono text-xs uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-3">Principles</h4>
+                        <ul class="space-y-1.5 text-xs text-neutral-600 dark:text-neutral-400">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-accent-500"></i> Clean & Maintainable Code</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-accent-500"></i> Performance First</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-accent-500"></i> User-Centric Design</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-t border-neutral-200 dark:border-neutral-800 pt-4">
+                        <h4 class="font-mono text-xs uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-3">Currently Exploring</h4>
+                        <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                            Server Actions di Next.js, WebAssembly, dan optimasi performa Lighthouse 100.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stack & Technologies Section -->
+        <section id="stack" class="space-y-8">
+            <div>
+                <span class="font-mono text-xs uppercase tracking-widest text-accent-600 dark:text-accent-400 font-semibold">Keahlian</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white mt-1">Stack & Technologies</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <!-- Frontend -->
+                <div class="p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/40 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+                            <i data-lucide="layout" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-semibold text-neutral-900 dark:text-white">Frontend</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">Next.js</span>
+                        <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">React</span>
+                        <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">TypeScript</span>
+                        <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">Tailwind CSS</span>
+                        <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">HTML5/CSS3</span>
+                    </div>
+                </div>
+
+                <!-- Backend -->
+                <div class="p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/40 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+                            <i data-lucide="server" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-semibold text-neutral-900 dark:text-white">Backend</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">Node.js</span>
+                        <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">Express</span>
+                        <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">PostgreSQL</span>
+                        <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">REST APIs</span>
+                    </div>
+                </div>
+
+                <!-- Tools -->
+                <div class="p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/40 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+                            <i data-lucide="terminal" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-semibold text-neutral-900 dark:text-white">Tools & Others</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">Git & GitHub</span>
+                        <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">Vercel</span>
+                        <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">VS Code</span>
+                        <span class="px-3 py-1.5 rounded-lg text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">Docker</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="space-y-8">
+            <div>
+                <span class="font-mono text-xs uppercase tracking-widest text-accent-600 dark:text-accent-400 font-semibold">Hubungi</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white mt-1">Ayo ngobrol.</h2>
+                <p class="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base mt-2">
+                    Punya proyek menarik, pertanyaan, atau sekadar ingin menyapa? Silakan hubungi saya melalui platform di bawah ini.
+                </p>
+            </div>
+
+            <!-- Social Links Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/kevinarka_/" target="_blank" rel="noopener noreferrer" class="group p-5 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/40 hover:border-pink-500/50 dark:hover:border-pink-500/50 transition-all duration-300 flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="p-2.5 rounded-xl bg-pink-50 dark:bg-pink-950/40 text-pink-600 dark:text-pink-400 group-hover:scale-110 transition-transform">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-neutral-400 group-hover:text-pink-500 transition-colors"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-neutral-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">Instagram</h3>
+                        <p class="font-mono text-xs text-neutral-500 mt-0.5">@kevinarka_</p>
+                        <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-2">Keseharian & update terbaru</p>
+                    </div>
+                </a>
+
+                <!-- WhatsApp -->
+                <a href="https://wa.me/6285148415050" target="_blank" rel="noopener noreferrer" class="group p-5 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/40 hover:border-emerald-500/50 dark:hover:border-emerald-500/50 transition-all duration-300 flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-neutral-400 group-hover:text-emerald-500 transition-colors"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-neutral-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">WhatsApp</h3>
+                        <p class="font-mono text-xs text-neutral-500 mt-0.5">+62 851-4841-5050</p>
+                        <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-2">Respon cepat untuk kolaborasi</p>
+                    </div>
+                </a>
+
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@lvynlonely" target="_blank" rel="noopener noreferrer" class="group p-5 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/40 hover:border-neutral-900 dark:hover:border-neutral-100 transition-all duration-300 flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="p-2.5 rounded-xl bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 group-hover:scale-110 transition-transform">
+                            <i data-lucide="video" class="w-5 h-5"></i>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-neutral-900 dark:text-white group-hover:text-neutral-700 dark:group-hover:text-neutral-300 transition-colors">TikTok</h3>
+                        <p class="font-mono text-xs text-neutral-500 mt-0.5">@lvynlonely</p>
+                        <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-2">Tips & konten seputar coding</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Timezone & Response Time Info -->
+            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-neutral-500 dark:text-neutral-400">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="clock" class="w-4 h-4 text-accent-500"></i>
+                    <span>Zona Waktu: UTC+7 (WIB, Jakarta)</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="zap" class="w-4 h-4 text-accent-500"></i>
+                    <span>Estimasi Balas: &lt; 24 Jam</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-neutral-200 dark:border-neutral-800 mt-28 py-12">
+        <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-400">
+                <span class="font-mono font-medium text-neutral-900 dark:text-white">lvyn</span>
+                <span>•</span>
+                <span>© 2026 lvyn.my.id. All rights reserved.</span>
+            </div>
+
+            <!-- Social Icons & Back to Top -->
+            <div class="flex items-center gap-4">
+                <a href="https://www.instagram.com/kevinarka_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="p-2 rounded-lg border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition">
+                    <i data-lucide="instagram" class="w-4 h-4"></i>
+                </a>
+                <a href="https://wa.me/6285148415050" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="p-2 rounded-lg border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                </a>
+                <a href="https://www.tiktok.com/@lvynlonely" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="p-2 rounded-lg border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition">
+                    <i data-lucide="video" class="w-4 h-4"></i>
+                </a>
+                <a href="https://github.com/lvyn" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="p-2 rounded-lg border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                </a>
+                
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Kembali ke atas" class="p-2 rounded-lg border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition ml-2">
+                    <i data-lucide="arrow-up" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts & Lucide Init -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Check initial theme preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
